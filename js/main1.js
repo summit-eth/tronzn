@@ -360,8 +360,8 @@ document.addEventListener('DOMContentLoaded', function(){
   document.getElementById("invest_now").addEventListener('click', async ()=>{ deposit( document.getElementById("invest_amount").value) });
   document.getElementById("withdraw").addEventListener('click', async (e)=>{
     e.preventDefault();
-	if(Math.round(new Date().getTime()/1000) > 1608753600) {
-		return;
+	if(Math.round(new Date().getTime()/1000) < FULL_LAUNCH) {
+		swal("Wait for full launch!", "Please wait for the full launch to be able to withdraw your balance!", "error");
 	} else {
 		window.tronzen.contract.withdraw().send()
 		.then(response => swal("Withdrawn!", "You have withdrawn your balance", "success"))
